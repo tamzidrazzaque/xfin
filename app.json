@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "xfin_surface",
-    "slug": "xfin_surface",
+    "name": "xfin",
+    "slug": "xfin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

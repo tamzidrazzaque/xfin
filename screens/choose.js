@@ -1,29 +1,31 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Button} from 'react-native';
 import { ThemeProvider } from "react-native-rapi-ui";
 import React, {useState} from 'react';
+import {auth, dataBase} from '../firebase_config'
+import { getDoc } from 'firebase/firestore';
 
 
-export default function choose({navigation}) {
-    const [name, setName] = useState('NoName');
+export default function Choose({navigation}) {
+    const username = auth.currentUser.name;
     return (
     
         <View style={styles.container}>
-          <Text style={styles.title}>XFin</Text>
+          <Text style={styles.title}>Welcome to XFin</Text>
+          <Text style={styles.header}>{auth.currentUser?.email}</Text>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Explorer", {id: {name}})}>
+          <TouchableOpacity onPress={() => navigation.navigate("Explorer", {id: {username}})}>
             <Text style={styles.buttons}>eXplorer</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate("Finder", {id: {name}})}>
-            <Text style={styles.buttons}>FINder</Text>
+          <TouchableOpacity onPress={() => navigation.navigate("Finder", {id: {username}})}>
+            <Text style={styles.buttons}> FINder </Text>
           </TouchableOpacity>
         
-          <Text>Type name below: </Text>
           
-          <TextInput onChangeText={(val) => setName(val)}></TextInput>
-          
-          <Text>Your name is {name}</Text>
+                    <TouchableOpacity onPress={() => auth.signOut().then(() => console.log('User signed out!'))}>
+            <Text style={styles.buttons}>Log out</Text>
+          </TouchableOpacity>
         </View>
       );
     }
@@ -37,18 +39,22 @@ export default function choose({navigation}) {
       },
       title: {
         fontWeight: 'bold',
-        fontSize: 20,
-        marginBottom: 19,
+        fontSize: 40,
+        marginBottom: 0,
       }, 
+      header:{
+        fontWeight:'bold',
+        fontSize: 25,
+        marginBottom: 10,
+
+      },
       buttons: {
         borderWidth: 5,
+        fontSize:20,
         padding: 10,
         borderColor: 'black',
         marginTop: 10,
         justifyContent: 'center',
-        shadowColor: 'grey',
-        shadowOpacity: 100,
-    
       },
     });
     

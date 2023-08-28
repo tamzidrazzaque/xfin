@@ -28,7 +28,7 @@ export default function MainStack() {
                 options = {{cardStyleInterpolator: forFade}}
   
   />
-          <Stack.Screen name = "Explorer" component={Explorer}/>
+          <Stack.Screen name = "Explorer" component={Explorer} options = {{headerShown: false}}/>
         </Stack.Navigator>
       
       </NavigationContainer>

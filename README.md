@@ -1,4 +1,4 @@
-//XFin 
+XFin 
 App created by Tamzid, Rohil, and Rakesh.
 
 About us?:
